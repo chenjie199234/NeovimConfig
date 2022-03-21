@@ -10,6 +10,7 @@ return require('packer').startup(function(use)
   -- My plugins here
   -- color
   use 'Mofiqul/vscode.nvim'
+  use 'norcalli/nvim-colorizer.lua'
   -- statusline
   use 'nvim-lualine/lualine.nvim'
   -- explorer
