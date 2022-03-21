@@ -5,24 +5,19 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
-  -- My plugins here
   -- manage self
   use 'wbthomason/packer.nvim'
+  -- My plugins here
   -- color
   use 'Mofiqul/vscode.nvim'
-  require('plugin_color')
   -- statusline
   use 'nvim-lualine/lualine.nvim'
-  require('plugin_statusline')
   -- explorer
   use 'kyazdani42/nvim-tree.lua'
-  require('plugin_explorer')
   -- comment
   use 'numToStr/Comment.nvim'
-  require('plugin_comment')
   -- autopairs
   use 'windwp/nvim-autopairs'
-  require('plugin_pair')
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
@@ -32,8 +27,7 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip'
-  use "rafamadriz/friendly-snippets"
-  require('plugin_lsp')
+  use 'rafamadriz/friendly-snippets'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
