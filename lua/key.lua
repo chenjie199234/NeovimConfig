@@ -79,7 +79,7 @@ vim.api.nvim_set_keymap('n','.','searchcount().total > 0 ? "n" : ":lua vim.diagn
 vim.api.nvim_set_keymap('n','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
 
 --diagnostic
-vim.api.nvim_set_keymap('n','<Space>',':lua vim.diagnostic.open_float(nil,{focus = false})<CR>',{silent = true})
+vim.api.nvim_set_keymap('n','<Space>',':lua vim.diagnostic.open_float({focus = false})<CR>',{silent = true})
 
 --reference
 vim.api.nvim_set_keymap('n',[[']],':lua vim.lsp.buf.references()<CR>',{silent = true})
