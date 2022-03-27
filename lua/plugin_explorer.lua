@@ -3,7 +3,7 @@ vim.api.nvim_set_keymap('n','f',':NvimTreeToggle<CR>',{silent = true})
 
 --explorer setting
 vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_git_hl = 1
+vim.g.nvim_tree_git_hl = 0
 vim.g.nvim_tree_highlight_opened_files = 3
 vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_add_trailing = 0
