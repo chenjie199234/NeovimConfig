@@ -4,20 +4,20 @@ vim.api.nvim_set_keymap('n','f',':NvimTreeToggle<CR>',{silent = true})
 --explorer setting
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_git_hl = 1
-vim.g.nvim_tree_highlight_opened_files = 1
+vim.g.nvim_tree_highlight_opened_files = 3
 vim.g.nvim_tree_root_folder_modifier = ':~'
 vim.g.nvim_tree_add_trailing = 0
 vim.g.nvim_tree_group_empty = 0
 vim.g.nvim_tree_icon_padding = ' '
 vim.g.nvim_tree_symlink_arrow = ' ➛ '
 vim.g.nvim_tree_respect_buf_cwd = 1
-vim.g.nvim_tree_create_in_closed_folder = 1
+vim.g.nvim_tree_create_in_closed_folder = 0
 vim.g.nvim_tree_special_files = {}
 vim.g.nvim_tree_show_icons = {
 	git = 1,
 	folders = 1,
 	folder_arrows = 1,
-	files = 1
+	files = 0
 }
 vim.g.nvim_tree_icons = {
 	default = ' ',
@@ -49,17 +49,17 @@ require("nvim-tree").setup {
       hide_root_folder = false,
       hijack_cursor = false,
       hijack_netrw = true,
-      hijack_unnamed_buffer_when_opening = false,
+      hijack_unnamed_buffer_when_opening = true,
       ignore_buffer_on_setup = false,
       open_on_setup = false,
       open_on_tab = false,
       sort_by = "name",
-      update_cwd = false,
+      update_cwd = true,
       view = {
         width = 30,
         height = 30,
         side = "left",
-        preserve_window_proportions = false,
+        preserve_window_proportions = true,
         number = false,
         relativenumber = false,
         signcolumn = "yes",
@@ -75,7 +75,7 @@ require("nvim-tree").setup {
         auto_open = true,
       },
       update_focused_file = {
-        enable = false,
+        enable = true,
         update_cwd = false,
         ignore_list = {},
       },
@@ -97,7 +97,7 @@ require("nvim-tree").setup {
       filters = {
         dotfiles = true,
         custom = {},
-        exclude = {},
+        exclude = {".gitignore",".clang-format"},
       },
       git = {
         enable = true,
