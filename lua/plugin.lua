@@ -15,6 +15,7 @@ require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   -- explorer
   use 'kyazdani42/nvim-tree.lua'
+  use "ahmedkhalf/project.nvim"
   -- comment
   use 'numToStr/Comment.nvim'
   -- autopairs
@@ -38,6 +39,7 @@ end)
 require('plugin_color')
 require('plugin_statusline')
 require('plugin_explorer')
+require('plugin_project')
 require('plugin_comment')
 require('plugin_pair')
 require('plugin_lsp')
