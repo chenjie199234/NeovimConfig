@@ -1,3 +1,4 @@
+vim.opt.splitright=true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.mouse="a"
 vim.opt.backup=false
