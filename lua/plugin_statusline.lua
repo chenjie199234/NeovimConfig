@@ -12,8 +12,8 @@ require('lualine').setup {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diagnostics'},
     lualine_c = {'buffers'},
-    lualine_x = {},
-    lualine_y = {'encoding', 'filetype'},
+    lualine_x = {{'filename',path=2}},
+    lualine_y = {'encoding'},
     lualine_z = {'filesize', 'progress'}
   },
   inactive_sections = {
