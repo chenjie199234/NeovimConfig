@@ -43,31 +43,35 @@ cmp.setup({
 			fallback()
 		end,{'i','c'}),
 		['<Tab>'] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable() then
-				return luasnip.expand_or_jump()
-			elseif cmp.visible() then
-				if cmp.complete_common_string() then
-					return
+			if has_words_before() then
+				if luasnip.expand_or_jumpable() then
+					return luasnip.expand_or_jump()
+				elseif cmp.visible() then
+					if cmp.complete_common_string() then
+						return
+					end
+					return cmp.select_next_item()
+				else
+					cmp.complete()
 				end
-				return cmp.select_next_item()
-			elseif has_words_before() then
-				cmp.complete()
 			end
 			fallback()
-		end,{'i'}),
+		end,{'i','s'}),
 		['<S-Tab>'] = cmp.mapping(function(fallback)
-			if luasnip.expand_or_jumpable() then
-				return luasnip.expand_or_jumpable()
-			elseif cmp.visible() then
-				if cmp.complete_common_string() then
-					return
+			if has_words_before() then
+				if luasnip.expand_or_jumpable() then
+					return luasnip.expand_or_jumpable()
+				elseif cmp.visible() then
+					if cmp.complete_common_string() then
+						return
+					end
+					return cmp.select_prev_item()
+				else
+					cmp.complete()
 				end
-				return cmp.select_prev_item()
-			elseif has_words_before() then
-				cmp.complete()
 			end
 			fallback()
-		end,{'i'})
+		end,{'i','s'})
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
