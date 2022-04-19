@@ -4,11 +4,6 @@ vim.cmd [[ au BufWritePre *.go,*.h,*.c,*.hh,*.cc,*.hpp,*.cpp,*.hxx,*.cxx lua vim
 vim.cmd [[ au VimEnter * lua vim.diagnostic.config({virtual_text = false}) ]]
 
 --lsp setting
-local has_words_before = function()
-  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-end
-
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 cmp.setup({
@@ -44,8 +39,10 @@ cmp.setup({
 		end,{'i','c'}),
 		['<Tab>'] = cmp.mapping(function(fallback)
 			if has_words_before() then
-				if luasnip.expand_or_jumpable() then
-					return luasnip.expand_or_jump()
+				if luasnip.expandable() then
+					return luasnip.expand()
+				elseif luasnip.in_snippet() and luasnip.jumpable(1) then
+					return luasnip.jump(1)
 				elseif cmp.visible() then
 					if cmp.complete_common_string() then
 						return
@@ -59,8 +56,10 @@ cmp.setup({
 		end,{'i','s'}),
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if has_words_before() then
-				if luasnip.expand_or_jumpable() then
-					return luasnip.expand_or_jumpable()
+				if luasnip.expandable() then
+					return luasnip.expand()
+				elseif luasnip.in_snippet() and luasnip.jumpable(1) then
+					return luasnip.jump(1)
 				elseif cmp.visible() then
 					if cmp.complete_common_string() then
 						return

@@ -74,7 +74,6 @@ vim.api.nvim_set_keymap('n','<M-u>','U',{silent = true})
 vim.api.nvim_set_keymap('n',',','searchcount().total > 0 ? "N" : ":lua vim.diagnostic.goto_prev()<CR>"',{silent = true,noremap = true,expr = true})
 vim.api.nvim_set_keymap('n','.','searchcount().total > 0 ? "n" : ":lua vim.diagnostic.goto_next()<CR>"' ,{silent = true,noremap = true,expr = true})
 
-
 --lsp hover
 vim.api.nvim_set_keymap('n','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
 
