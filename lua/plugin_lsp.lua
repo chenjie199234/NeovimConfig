@@ -25,9 +25,21 @@ cmp.setup({
 			end
 			fallback()
 		end,{'i','c'}),
+		['<Down>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				return cmp.select_next_item()
+			end
+			fallback()
+		end,{'i','c'}),
 		['<C-j>'] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				return cmp.select_next_item()
+			end
+			fallback()
+		end,{'i','c'}),
+		['<Up>'] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				return cmp.select_prev_item()
 			end
 			fallback()
 		end,{'i','c'}),
@@ -45,15 +57,15 @@ cmp.setup({
 					return luasnip.jump(1)
 				elseif cmp.visible() then
 					if cmp.complete_common_string() then
-						return
-					end
+                                               return
+                                        end
 					return cmp.select_next_item()
 				else
 					cmp.complete()
 				end
 			end
 			fallback()
-		end,{'i','s'}),
+		end,{'i','c'}),
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if has_words_before() then
 				if luasnip.expandable() then
@@ -62,15 +74,15 @@ cmp.setup({
 					return luasnip.jump(1)
 				elseif cmp.visible() then
 					if cmp.complete_common_string() then
-						return
-					end
+                                               return
+                                        end
 					return cmp.select_prev_item()
 				else
 					cmp.complete()
 				end
 			end
 			fallback()
-		end,{'i','s'})
+		end,{'i','c'})
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
