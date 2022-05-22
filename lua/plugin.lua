@@ -8,6 +8,8 @@ require('packer').startup(function(use)
   -- manage self
   use 'wbthomason/packer.nvim'
   -- My plugins here
+  -- indent
+  use "lukas-reineke/indent-blankline.nvim"
   -- color
   use 'Mofiqul/vscode.nvim'
   use 'norcalli/nvim-colorizer.lua'
@@ -36,6 +38,7 @@ require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+require('plugin_indent')
 require('plugin_color')
 require('plugin_statusline')
 require('plugin_explorer')

@@ -8,4 +8,6 @@ vim.opt.number=true
 vim.opt.whichwrap="h,l"
 vim.opt.ignorecase=true
 vim.opt.smartcase=true
-vim.opt.cursorline=true
+-- vim.opt.cursorline=true
+vim.opt.foldmethod="indent"
+vim.opt.foldlevel=1

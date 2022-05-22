@@ -46,7 +46,6 @@ require("nvim-tree").setup {
       auto_close = false,
       auto_reload_on_write = true,
       disable_netrw = false,
-      hide_root_folder = false,
       hijack_cursor = false,
       hijack_netrw = true,
       hijack_unnamed_buffer_when_opening = true,
@@ -56,9 +55,11 @@ require("nvim-tree").setup {
       open_on_tab = false,
       sort_by = "name",
       update_cwd = true,
+      reload_on_bufenter = false,
       view = {
         width = 30,
         height = 30,
+        hide_root_folder = false,
         side = "left",
         preserve_window_proportions = true,
         number = false,
@@ -68,8 +69,26 @@ require("nvim-tree").setup {
           custom_only = false,
           list = {
             -- user mappings go here
+	    { key = "f", action = "" },
+	    { key = "F", action = "" },
+	    { key = "<M-f>", action = "live_filter" },
+	    { key = "<C-f>", action = "live_filter" },
           },
         },
+      },
+      renderer = {
+	indent_markers = {
+	  enable = true,
+	  icons = {
+	    corner = "└ ",
+	    edge = "│ ",
+	    none = "  ",
+	  },
+        },
+        icons = {
+	  webdev_colors = true,
+	  git_placement = "before",
+	},
       },
       hijack_directories = {
         enable = true,
@@ -106,9 +125,11 @@ require("nvim-tree").setup {
         timeout = 400,
       },
       actions = {
+        use_system_clipboard = true, 
         change_dir = {
           enable = true,
           global = false,
+          restrict_above_cwd = false,
         },
         open_file = {
           quit_on_open = false,
@@ -127,13 +148,20 @@ require("nvim-tree").setup {
         cmd = "trash",
         require_confirm = true,
       },
+      live_filter = {
+        prefix = "[FILTER]: ",
+        always_show_folders = true,
+      },
       log = {
         enable = false,
         truncate = false,
         types = {
           all = false,
           config = false,
+          copy_paste = false,
+          diagnostics = false,
           git = false,
+          profile = false,
         },
       },
 }
