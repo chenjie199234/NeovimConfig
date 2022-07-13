@@ -13,11 +13,14 @@ require("nvim-tree").setup {
       open_on_setup_file = true,
       open_on_tab = false,
       sort_by = "name",
-      update_cwd = true,
+      root_dirs = {},
+      prefer_startup_root = false,
+      sync_root_with_cwd = true,
       reload_on_bufenter = false,
       respect_buf_cwd = false,
       view = {
 	adaptive_size = false,
+	centralize_selection = false,
         width = 30,
         height = 30,
         hide_root_folder = false,
@@ -38,8 +41,10 @@ require("nvim-tree").setup {
         },
       },
       renderer = {
+	add_trailing = false,
 	group_empty = false,
 	highlight_git = false,
+        full_name = false,
 	highlight_opened_files = "none",
 	root_folder_modifier = ":~",
 	indent_markers = {
@@ -47,6 +52,7 @@ require("nvim-tree").setup {
 	  icons = {
 	    corner = "└ ",
 	    edge = "│ ",
+            item = "│ ",
 	    none = "  ",
 	  },
         },
@@ -58,7 +64,7 @@ require("nvim-tree").setup {
 	  show = {
 	    file = false,
 	    folder = true,
-	    folder_arrow = true,
+	    folder_arrow = false,
 	    git = true,
 	  },
 	  glyphs = {
@@ -86,6 +92,7 @@ require("nvim-tree").setup {
   	  },
 	},
 	special_files = { "Makefile", "README.md", "readme.md" },
+	symlink_destination = true,
       },
       hijack_directories = {
         enable = true,
@@ -116,9 +123,15 @@ require("nvim-tree").setup {
         custom = {},
         exclude = {".gitignore",".clang-format"},
       },
+      filesystem_watchers = {
+        enable = false,
+        interval = 100,
+        debounce_delay = 50,
+      },
       git = {
         enable = true,
         ignore = true,
+        show_on_dirs = true,
         timeout = 400,
       },
       actions = {
@@ -130,6 +143,7 @@ require("nvim-tree").setup {
         },
 	expand_all = {
 	  max_folder_discovery = 300,
+          exclude = {},
 	},
         open_file = {
           quit_on_open = false,
@@ -165,6 +179,7 @@ require("nvim-tree").setup {
           diagnostics = false,
           git = false,
           profile = false,
+          watcher = false,
         },
       },
 }
