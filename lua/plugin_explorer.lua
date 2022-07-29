@@ -12,12 +12,15 @@ require("nvim-tree").setup {
       open_on_setup = true,
       open_on_setup_file = true,
       open_on_tab = false,
+      ignore_buf_on_tab_change = {},
       sort_by = "name",
       root_dirs = {},
       prefer_startup_root = false,
       sync_root_with_cwd = true,
       reload_on_bufenter = false,
       respect_buf_cwd = false,
+      on_attach = "disable",
+      remove_keymaps = false,
       view = {
 	adaptive_size = false,
 	centralize_selection = false,
@@ -49,6 +52,7 @@ require("nvim-tree").setup {
 	root_folder_modifier = ":~",
 	indent_markers = {
 	  enable = true,
+          inline_arrows = true,
 	  icons = {
 	    corner = "└ ",
 	    edge = "│ ",
@@ -70,6 +74,7 @@ require("nvim-tree").setup {
 	  glyphs = {
 	    default = ' ',
 	    symlink = ' ',
+            bookmark = ' ',
 	    folder = {
 	      arrow_open = "<",
 	      arrow_closed = ">",
@@ -125,7 +130,6 @@ require("nvim-tree").setup {
       },
       filesystem_watchers = {
         enable = false,
-        interval = 100,
         debounce_delay = 50,
       },
       git = {
