@@ -42,6 +42,17 @@ require("nvim-tree").setup {
 	    { key = "<C-f>", action = "live_filter" },
           },
         },
+	float = {
+          enable = false,
+          open_win_config = {
+            relative = "editor",
+            border = "rounded",
+            width = 30,
+            height = 30,
+            row = 1,
+            col = 1,
+          },
+	}
       },
       renderer = {
 	add_trailing = false,
@@ -116,6 +127,7 @@ require("nvim-tree").setup {
       diagnostics = {
         enable = true,
         show_on_dirs = true,
+	debounce_delay = 50,
         icons = {
           hint = "H",
           info = "I",
@@ -149,6 +161,15 @@ require("nvim-tree").setup {
 	  max_folder_discovery = 300,
           exclude = {},
 	},
+	file_popup = {
+          open_win_config = {
+            col = 1,
+            row = 1,
+            relative = "cursor",
+            border = "shadow",
+            style = "minimal",
+          },
+        },
         open_file = {
           quit_on_open = false,
           resize_window = true,
@@ -166,7 +187,7 @@ require("nvim-tree").setup {
 	},
       },
       trash = {
-        cmd = "trash",
+        cmd = "gio trash",
         require_confirm = true,
       },
       live_filter = {
