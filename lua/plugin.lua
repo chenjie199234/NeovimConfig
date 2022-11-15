@@ -12,7 +12,8 @@ require('packer').startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
   -- color
   -- use 'Mofiqul/vscode.nvim'
-  use 'altercation/vim-colors-solarized'
+  -- use 'altercation/vim-colors-solarized'
+  use 'joshdick/onedark.vim'
   use 'NvChad/nvim-colorizer.lua'
   -- statusline
   use 'nvim-lualine/lualine.nvim'
