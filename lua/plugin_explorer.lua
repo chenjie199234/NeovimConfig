@@ -1,6 +1,8 @@
 --explorer toggle
 vim.api.nvim_set_keymap('n','f',':NvimTreeToggle<CR>',{silent = true})
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup {
       auto_reload_on_write = true,
       create_in_closed_folder = false,
@@ -21,6 +23,7 @@ require("nvim-tree").setup {
       respect_buf_cwd = false,
       on_attach = "disable",
       remove_keymaps = false,
+      select_prompts = false,
       view = {
 	adaptive_size = false,
 	centralize_selection = false,
@@ -43,6 +46,7 @@ require("nvim-tree").setup {
         },
 	float = {
           enable = false,
+          quit_on_focus_loss = true,
           open_win_config = {
             relative = "editor",
             border = "rounded",
@@ -60,14 +64,16 @@ require("nvim-tree").setup {
         full_name = false,
 	highlight_opened_files = "none",
 	root_folder_modifier = ":~",
+        indent_width = 2,
 	indent_markers = {
 	  enable = true,
           inline_arrows = true,
 	  icons = {
-	    corner = "└ ",
-	    edge = "│ ",
-            item = "│ ",
-	    none = "  ",
+	    corner = "└",
+	    edge = "│",
+            item = "│",
+            bottom = "─",
+	    none = " ",
 	  },
         },
         icons = {
@@ -142,6 +148,7 @@ require("nvim-tree").setup {
       filesystem_watchers = {
         enable = false,
         debounce_delay = 50,
+        ignore_dirs = {},
       },
       git = {
         enable = true,
@@ -200,10 +207,14 @@ require("nvim-tree").setup {
           all = false,
           config = false,
           copy_paste = false,
+          dev = false,
           diagnostics = false,
           git = false,
           profile = false,
           watcher = false,
         },
+      },
+      notify = {
+        threshold = vim.log.levels.INFO,
       },
 }

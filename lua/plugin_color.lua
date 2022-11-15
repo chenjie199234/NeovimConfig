@@ -1,5 +1,7 @@
+-- vim.opt.termguicolors=true
 vim.o.background = 'dark'
 vim.g.solarized_termcolors = 256
 vim.g.solarized_contrast = "high"
 vim.g.solarized_visibility = "low"
 vim.cmd('colorscheme solarized')
+require 'colorizer'.setup()

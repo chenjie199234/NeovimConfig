@@ -65,7 +65,7 @@ cmp.setup({
 				end
 			end
 			fallback()
-		end,{'i','c'}),
+		end,{'i'}),
 		['<S-Tab>'] = cmp.mapping(function(fallback)
 			if has_words_before() then
 				if luasnip.expandable() then
@@ -82,7 +82,7 @@ cmp.setup({
 				end
 			end
 			fallback()
-		end,{'i','c'})
+		end,{'i'})
 	},
 	sources = cmp.config.sources({
 		{ name = 'nvim_lsp' },
@@ -111,6 +111,6 @@ cmp.setup.cmdline(':', {
 require("luasnip.loaders.from_vscode").lazy_load()
 
 --start lsp server
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['gopls'].setup {capabilities = capabilities}
 require('lspconfig')['clangd'].setup {capabilities = capabilities}

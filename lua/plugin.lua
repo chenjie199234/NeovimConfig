@@ -13,7 +13,7 @@ require('packer').startup(function(use)
   -- color
   -- use 'Mofiqul/vscode.nvim'
   use 'altercation/vim-colors-solarized'
-  use 'norcalli/nvim-colorizer.lua'
+  use 'NvChad/nvim-colorizer.lua'
   -- statusline
   use 'nvim-lualine/lualine.nvim'
   -- explorer
