@@ -103,6 +103,7 @@ require("nvim-tree").setup {
 	  glyphs = {
 	    default = ' ',
 	    symlink = ' ',
+            bookmark = ' ',
 	    modified = ' ',
 	    folder = {
 	      arrow_open = "<",
