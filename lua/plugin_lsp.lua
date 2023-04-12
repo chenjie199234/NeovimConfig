@@ -1,5 +1,8 @@
 --lsp auto format on save
-vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback = vim.lsp.buf.formatting_sync})
+vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function(data)
+		vim.lsp.buf.format()
+	end
+})
 
 --lsp setting
 local cmp = require('cmp')
