@@ -17,6 +17,24 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = function (data)
 	end
 })
 
+local function on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  -- My Delete:
+  vim.keymap.del('n','f',{ buffer = bufnr })
+  vim.keymap.del('n','F',{ buffer = bufnr })
+  vim.keymap.set('n','<C-f>',api.live_filter.start,opts("Filter"))
+  vim.keymap.set('n','<M-f>',api.live_filter.start,opts("Filter"))
+  vim.keymap.set('n','F',api.live_filter.clear,opts("Clean Filter"))
+  vim.keymap.set('n','?',api.tree.toggle_help,opts("Help"))
+end
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require("nvim-tree").setup {
@@ -31,7 +49,7 @@ require("nvim-tree").setup {
       sync_root_with_cwd = true,
       reload_on_bufenter = false,
       respect_buf_cwd = false,
-      on_attach = "disable",
+      on_attach = on_attach,
       select_prompts = false,
       view = {
 	centralize_selection = false,
@@ -44,16 +62,6 @@ require("nvim-tree").setup {
         number = false,
         relativenumber = false,
         signcolumn = "yes",
-        mappings = {
-          custom_only = false,
-          list = {
-            -- user mappings go here
-	    { key = "f", action = "" },
-	    { key = "F", action = "" },
-	    { key = "<M-f>", action = "live_filter" },
-	    { key = "<C-f>", action = "live_filter" },
-          },
-        },
 	float = {
           enable = false,
           quit_on_focus_loss = true,
