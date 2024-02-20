@@ -47,7 +47,7 @@ require("nvim-tree").setup {
 	prefer_startup_root = false,
 	sync_root_with_cwd = true,
 	reload_on_bufenter = false,
-	respect_buf_cwd = false,
+	respect_buf_cwd = true,
 	select_prompts = false,
 	sort = {
 		sorter = "name",
@@ -174,6 +174,7 @@ require("nvim-tree").setup {
 		show_on_open_dirs = true,
 		disable_for_dirs = {},
 		timeout = 400,
+		cygwin_support = false,
 	},
 	diagnostics = {
 		enable = true,
@@ -201,6 +202,7 @@ require("nvim-tree").setup {
 		dotfiles = true,
 		git_clean = false,
 		no_buffer = false,
+		no_bookmark = false,
 		custom = {},
 		exclude = {".gitignore",".clang-format"},
 	},
@@ -265,10 +267,14 @@ require("nvim-tree").setup {
 		threshold = vim.log.levels.INFO,
 		absolute_path = true,
 	},
+	help = {
+		sort_by = "key",
+	},
 	ui = {
 		confirm = {
 			remove = true,
 			trash = true,
+			default_yes = false,
 		},
 	},
 	experimental = {},

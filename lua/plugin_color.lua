@@ -25,4 +25,4 @@ require('vscode').setup({
     }
 })
 require('vscode').load()
-require 'colorizer'.setup()
+require('colorizer').setup()
