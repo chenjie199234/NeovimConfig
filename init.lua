@@ -118,7 +118,7 @@ vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh",
 --nvim tree
 vim.api.nvim_create_autocmd({"VimEnter"},{callback=function(data)
   require("nvim-tree.api").tree.toggle()
-  if vim.fn.filereadable(data.file) == 1 then
+  if vim.fn.filereadable(data.file) and data.file~="" then
     require("nvim-tree.api").tree.toggle()
   end
 end})
