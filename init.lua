@@ -115,6 +115,15 @@ vim.api.nvim_set_keymap('n','<M-o>','<C-o>',{silent = true})
 --lsp format
 vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format();end})
 
+--nvim tree
+vim.api.nvim_create_autocmd({"VimEnter"},{callback=function(data)
+  require("nvim-tree.api").tree.toggle()
+  if vim.fn.filereadable(data.file) == 1 then
+    require("nvim-tree.api").tree.toggle()
+  end
+end})
+
+vim.opt.shortmess="I"
 vim.opt.splitright=true
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.mouse="a"
@@ -215,6 +224,7 @@ require('lazy').setup({
         vim.keymap.set('n','<M-/>',function()api.tree.open();api.live_filter.start();end)
         vim.keymap.set('n','?',api.tree.toggle_help)
       end,
+      disable_netrw=true,
       hijack_unnamed_buffer_when_opening=true,
       sync_root_with_cwd = true,
       respect_buf_cwd = true,
