@@ -287,7 +287,7 @@ require('lazy').setup({
         exclude = false,
       },
       diagnostics = {
-        enable = false,
+        enable = true,
         show_on_dirs = false,
         show_on_open_dirs = true,
         icons = {
