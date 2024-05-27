@@ -163,16 +163,10 @@ require('lazy').setup({
   },
   -- color
   {
-    'Mofiqul/vscode.nvim',
+    "Tsuzat/NeoSolarized.nvim",
     init = function()
-      vim.cmd 'colorscheme vscode';
+      vim.cmd [[ colorscheme NeoSolarized ]]
     end,
-    opts={
-      style="light",
-      transparent=true,
-      italic_comments=true,
-      disable_nvimtree_bg=true,
-    },
     lazy=false,
   },
   {
