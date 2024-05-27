@@ -187,7 +187,7 @@ require('lazy').setup({
     opts={
       options = {
         icons_enabled=false,
-        theme='vscode',
+        theme='NeoSolarized',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         always_divide_middle = true,
