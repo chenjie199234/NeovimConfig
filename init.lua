@@ -113,7 +113,7 @@ vim.api.nvim_set_keymap('n','<M-i>',':lua vim.lsp.buf.definition()<CR>',{silent 
 vim.api.nvim_set_keymap('n','<M-o>','<C-o>',{silent = true})
 
 --lsp format
-vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format();end})
+vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format({async = false});end})
 
 --nvim tree
 vim.api.nvim_create_autocmd({"VimEnter"},{callback=function(data)
@@ -444,13 +444,11 @@ require('lspconfig')['gopls'].setup {
 	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 	setting={
 		gopls = {
-			experimentalPostfixCompletions = true,
 			analyses = {
 				unusedparams = true,
-				shadow = true,
 			},
 			staticcheck = true,
+			gofumpt = true,
 		},
 	},
-	init_options = { usePlaceholders = true },
 }
