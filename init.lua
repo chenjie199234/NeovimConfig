@@ -108,9 +108,13 @@ vim.api.nvim_set_keymap('n','<M-r>',':lua vim.lsp.buf.rename()<CR>',{silent = tr
 
 --lsp definition
 vim.api.nvim_set_keymap('n','<C-i>',':lua vim.lsp.buf.definition()<CR>',{silent = true})
+vim.api.nvim_set_keymap('n','<C-LeftMouse>',':lua vim.lsp.buf.definition()<CR>',{silent = true})
 vim.api.nvim_set_keymap('n','<M-i>',':lua vim.lsp.buf.definition()<CR>',{silent = true})
+vim.api.nvim_set_keymap('n','<M-LeftMouse>',':lua vim.lsp.buf.definition()<CR>',{silent = true})
 --<C-o> jump back to last cursor position
 vim.api.nvim_set_keymap('n','<M-o>','<C-o>',{silent = true})
+vim.api.nvim_set_keymap('n','<C-RightMouse>','<C-o>',{silent = true})
+vim.api.nvim_set_keymap('n','<M-RightMouse>','<C-o>',{silent = true})
 
 --lsp format
 vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format({async = false});end})
