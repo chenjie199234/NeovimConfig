@@ -459,3 +459,7 @@ require('lspconfig')['gopls'].setup {
 		},
 	},
 }
+require('lspconfig')['clangd'].setup {
+	cmd={'clangd','--enable-config'},
+	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+}
