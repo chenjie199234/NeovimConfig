@@ -207,6 +207,17 @@ require('lazy').setup({
     },
     lazy=false,
   },
+ --  {
+ --    "ahmedkhalf/project.nvim",
+ --    config = function()
+ --      require("project_nvim").setup({
+ --        detection_methods = { "pattern" },
+ --        patterns = { ".git", ".svn", ".clang-format", "Makefile", "go.mod", "package.json" },
+	-- silent_chdir = true,
+ --      })
+ --    end,
+ --    lazy=false,
+ --  },
   -- explorer
   {
     'kyazdani42/nvim-tree.lua',
@@ -224,7 +235,9 @@ require('lazy').setup({
       end,
       disable_netrw=true,
       hijack_unnamed_buffer_when_opening=true,
+      prefer_startup_root=true,
       sync_root_with_cwd = true,
+      -- reload_on_bufenter=true,
       respect_buf_cwd = true,
       renderer={
         special_files = {},
@@ -277,7 +290,7 @@ require('lazy').setup({
         }
       },
       update_focused_file = {
-        enable = true,
+        enable = false,
         update_root = {
           enable = true,
           ignore_list = {},
@@ -296,15 +309,6 @@ require('lazy').setup({
         },
       },
     },
-    lazy=false,
-  },
-  {
-    "ahmedkhalf/project.nvim",
-    config = function()
-      require("project_nvim").setup{
-        patterns = { ".git", ".svn", ".clang-format", "Makefile", "go.mod", "package.json" },
-      }
-    end,
     lazy=false,
   },
   -- comment
@@ -448,11 +452,10 @@ require('lspconfig')['gopls'].setup {
 	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 	setting={
 		gopls = {
+			usePlaceholders = true,
 			analyses = {
-				unusedparams = true,
+				shadow = true,
 			},
-			staticcheck = true,
-			gofumpt = true,
 		},
 	},
 }
