@@ -119,13 +119,6 @@ vim.api.nvim_set_keymap('n','<M-RightMouse>','<C-o>',{silent = true})
 --lsp format
 vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format({async = false});end})
 
---nvim tree
-vim.api.nvim_create_autocmd({"VimEnter"},{callback=function(data)
-  require("nvim-tree.api").tree.toggle()
-  if data~=nil and vim.fn.filereadable(data.file) and data.file~="" then
-    require("nvim-tree.api").tree.toggle()
-  end
-end})
 
 vim.opt.shortmess="I"
 vim.opt.splitright=true
@@ -455,3 +448,11 @@ require('lspconfig')['clangd'].setup {
 	cmd={'clangd','--enable-config'},
 	capabilities=require('cmp_nvim_lsp').default_capabilities(),
 }
+
+--nvim tree
+vim.api.nvim_create_autocmd({"VimEnter"},{callback=function(data)
+  require("nvim-tree.api").tree.toggle()
+  if data~=nil and vim.fn.filereadable(data.file) and data.file~="" then
+    require("nvim-tree.api").tree.toggle()
+  end
+end})
