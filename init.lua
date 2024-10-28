@@ -137,6 +137,7 @@ vim.opt.cursorline=true
 vim.opt.foldmethod="indent"
 vim.opt.foldlevel=1
 vim.opt.shiftwidth=2
+vim.opt.tabstop=4
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
