@@ -137,7 +137,6 @@ vim.opt.cursorline=true
 vim.opt.foldmethod="indent"
 vim.opt.foldlevel=1
 
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
@@ -163,10 +162,16 @@ require('lazy').setup({
   },
   -- color
   {
-    "Tsuzat/NeoSolarized.nvim",
+    "Mofiqul/vscode.nvim",
     init = function()
-      vim.cmd [[ colorscheme NeoSolarized ]]
+      vim.cmd.colorscheme('vscode')
     end,
+    opts={
+      transparent = true,
+      italic_comments = true,
+      underline_links = true,
+      disable_nvimtree_bg = true,
+    },
     lazy=false,
   },
   {
@@ -187,7 +192,7 @@ require('lazy').setup({
     opts={
       options = {
         icons_enabled=false,
-        theme='NeoSolarized',
+        theme='vscode',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         always_divide_middle = true,
