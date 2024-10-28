@@ -93,8 +93,8 @@ vim.api.nvim_set_keymap('n','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
 vim.api.nvim_set_keymap('v','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
 
 --fold
-vim.api.nvim_set_keymap('n','<Space>',[[ foldclosed(line(".")) < 0 && foldlevel(line(".")) > 0 ? 'zc' : 'zo' ]],{silent = true,noremap = true,expr = true})
-vim.api.nvim_set_keymap('v','<Space>',[[ foldclosed(line(".")) < 0 && foldlevel(line(".")) > 0 ? '<ESC>zc' : '<ESC>zo' ]],{silent = true,noremap = true,expr = true})
+vim.api.nvim_set_keymap('n','<Space>',[[ foldclosed(line(".")) < 0 && foldlevel(line(".")) > 0 ? 'zc' : 'zO' ]],{silent = true,noremap = true,expr = true})
+vim.api.nvim_set_keymap('v','<Space>',[[ foldclosed(line(".")) < 0 && foldlevel(line(".")) > 0 ? '<ESC>zc' : '<ESC>zO' ]],{silent = true,noremap = true,expr = true})
 	
 --diagnostic
 -- vim.api.nvim_set_keymap('n','<Space>',':lua vim.diagnostic.open_float({focus = false})<CR>',{silent = true})
@@ -136,6 +136,7 @@ vim.opt.smartcase=true
 vim.opt.cursorline=true
 vim.opt.foldmethod="indent"
 vim.opt.foldlevel=1
+vim.opt.shiftwidth=2
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -159,6 +160,7 @@ require('lazy').setup({
     opts={
       indent={char="┋"}
     },
+    lazy=false,
   },
   -- color
   {
