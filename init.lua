@@ -211,17 +211,6 @@ require('lazy').setup({
     },
     lazy=false,
   },
- --  {
- --    "ahmedkhalf/project.nvim",
- --    config = function()
- --      require("project_nvim").setup({
- --        detection_methods = { "pattern" },
- --        patterns = { ".git", ".svn", ".clang-format", "Makefile", "go.mod", "package.json" },
-	-- silent_chdir = true,
- --      })
- --    end,
- --    lazy=false,
- --  },
   -- explorer
   {
     'kyazdani42/nvim-tree.lua',
@@ -240,9 +229,9 @@ require('lazy').setup({
       disable_netrw=true,
       hijack_unnamed_buffer_when_opening=true,
       prefer_startup_root=true,
-      sync_root_with_cwd = true,
-      -- reload_on_bufenter=true,
-      respect_buf_cwd = true,
+      sync_root_with_cwd=false,
+      reload_on_bufenter=true,
+      respect_buf_cwd=false,
       renderer={
         special_files = {},
         indent_markers = {
@@ -294,7 +283,7 @@ require('lazy').setup({
         }
       },
       update_focused_file = {
-        enable = false,
+        enable = true,
         update_root = {
           enable = true,
           ignore_list = {},
