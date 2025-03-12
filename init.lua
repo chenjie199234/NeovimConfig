@@ -1,34 +1,33 @@
 function close_all_float_window()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local config = vim.api.nvim_win_get_config(win)
-		if config.relative ~= "" then
-			vim.api.nvim_win_close(win, false)
-		end
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+	local config = vim.api.nvim_win_get_config(win)
+	if config.relative ~= "" then
+	  vim.api.nvim_win_close(win, false)
 	end
+  end
 end
 
 function has_words_before()
-	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
 local initdir = vim.fn.getcwd()
 if #vim.fn.argv()>0 then
-	initdir = vim.fn.fnamemodify(vim.fn.argv()[1], ":p:h")
+  initdir = vim.fn.fnamemodify(vim.fn.argv()[1], ":p:h")
 end
 
 --if all buf is closed(except NvimTree's) change NvimTree's root to the start root
 vim.api.nvim_create_autocmd({"BufDelete"},{callback=function()
-    local count = 0
-    for _,buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and not string.match(vim.api.nvim_buf_get_name(buf),"NvimTree") then
-		    count = count+1
-        end
-    end
-	if count > 0 then
-	    require("nvim-tree.api").tree.change_root(initdir)
-	    require("nvim-tree.api").tree.reload()
+  local count = 0
+  for _,buf in ipairs(vim.api.nvim_list_bufs()) do
+	if not require("nvim-tree.api").tree.is_tree_buf(buf) and vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_name(buf) ~= "" then
+	  count = count+1
 	end
+  end
+  if count == 0 then
+	require("nvim-tree.api").tree.change_root(initdir)
+  end
 end})
 
 vim.api.nvim_set_keymap('n','<ESC>',':lua close_all_float_window()<CR>:cclose<CR><ESC>',{silent = true,noremap = true})
@@ -95,7 +94,7 @@ vim.api.nvim_set_keymap('c','<M-p>','<C-r>+',{silent = true})
 --buffer navigation
 vim.api.nvim_set_keymap('n','n',':bn<CR>',{silent = true,noremap = true})
 vim.api.nvim_set_keymap('n','b',':bp<CR>',{silent = true})
-vim.api.nvim_set_keymap('n','m',':bd<CR>',{silent = true})
+vim.api.nvim_set_keymap('n','m',':bw<CR>',{silent = true})
 
 --undo and redo
 vim.api.nvim_set_keymap('n','u','u',{silent = true})
@@ -139,7 +138,7 @@ vim.api.nvim_set_keymap('n','<M-RightMouse>','<C-o>',{silent = true})
 vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh","*.cc","*.hpp","*.cpp","*.hxx","*.cxx"},callback=function()vim.lsp.buf.format({async = false});end})
 
 --nvim tree
-vim.api.nvim_create_autocmd({"VimEnter"},{callback=function() require("nvim-tree.api").tree.toggle() end})
+vim.api.nvim_create_autocmd({"VimEnter"},{callback=function() require("nvim-tree.api").tree.open() end})
 
 vim.opt.shortmess="I"
 vim.opt.splitright=true
@@ -239,6 +238,7 @@ require('lazy').setup({
         api.config.mappings.default_on_attach(bufnr)
         vim.keymap.del('n','f',{ buffer = bufnr })
         vim.keymap.del('n','F',{ buffer = bufnr })
+        vim.keymap.del('n','q',{ buffer = bufnr })
         vim.keymap.set('n','f',api.tree.toggle)
         vim.keymap.set('n','F',api.tree.toggle)
         vim.keymap.set('n','<C-/>',function()api.tree.open();api.live_filter.start();end)
@@ -248,7 +248,7 @@ require('lazy').setup({
       disable_netrw=true,
       hijack_unnamed_buffer_when_opening=true,
       prefer_startup_root=true,
-      sync_root_with_cwd=false,
+      sync_root_with_cwd=true,
       reload_on_bufenter=true,
       respect_buf_cwd=false,
       renderer={
