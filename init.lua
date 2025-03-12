@@ -12,6 +12,25 @@ function has_words_before()
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local initdir = vim.fn.getcwd()
+if #vim.fn.argv()>0 then
+	initdir = vim.fn.fnamemodify(vim.fn.argv()[1], ":p:h")
+end
+
+--if all buf is closed(except NvimTree's) change NvimTree's root to the start root
+vim.api.nvim_create_autocmd({"BufDelete"},{callback=function()
+    local count = 0
+    for _,buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and not string.match(vim.api.nvim_buf_get_name(buf),"NvimTree") then
+		    count = count+1
+        end
+    end
+	if count > 0 then
+	    require("nvim-tree.api").tree.change_root(initdir)
+	    require("nvim-tree.api").tree.reload()
+	end
+end})
+
 vim.api.nvim_set_keymap('n','<ESC>',':lua close_all_float_window()<CR>:cclose<CR><ESC>',{silent = true,noremap = true})
 
 --window
