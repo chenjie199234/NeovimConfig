@@ -1,3 +1,4 @@
+-- autocmd BufRead,BufNewFile * set fileformat=unix
 function close_all_float_window()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
 	local config = vim.api.nvim_win_get_config(win)
@@ -140,6 +141,23 @@ vim.api.nvim_create_autocmd({"BufWritePre"},{pattern={"*.go","*.h","*.c","*.hh",
 --nvim tree
 vim.api.nvim_create_autocmd({"VimEnter"},{callback=function() require("nvim-tree.api").tree.open() end})
 
+--use unix fileformat
+vim.opt.fileformat = 'unix'
+vim.opt.fileformats = 'unix,dos,mac'
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*',
+  callback = function()
+    vim.bo.fileformat = 'unix'
+  end
+})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local modified = vim.bo.modified
+    vim.bo.fileformat = 'unix'
+    vim.bo.modified = modified
+  end
+})
 vim.opt.shortmess="I"
 vim.opt.splitright=true
 vim.opt.clipboard:append("unnamedplus")
