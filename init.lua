@@ -146,13 +146,17 @@ vim.opt.fileformats = 'unix,dos,mac'
 vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
   pattern = '*',
   callback = function()
-    vim.bo.fileformat = 'unix'
+	if vim.bo.modifiable then
+	  vim.bo.fileformat = 'unix'
+	end
   end
 })
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   callback = function()
-    vim.bo.fileformat = 'unix'
+	if vim.bo.modifiable then
+	  vim.bo.fileformat = 'unix'
+	end
   end
 })
 vim.opt.shortmess="I"
