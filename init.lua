@@ -481,6 +481,12 @@ require("luasnip.loaders.from_vscode").lazy_load()
 require('lspconfig')['gopls'].setup {
 	cmd={'gopls'},
 	capabilities=require('cmp_nvim_lsp').default_capabilities(),
+	setting={
+	  gopls={
+		usePlaceholders=true,
+		diagnosticsTrigger="Save",
+	  },
+	},
 }
 require('lspconfig')['clangd'].setup {
 	cmd={'clangd','--enable-config'},
