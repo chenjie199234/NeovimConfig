@@ -107,8 +107,8 @@ vim.api.nvim_set_keymap('n',',','searchcount().total > 0 ? "N" : ":lua vim.diagn
 vim.api.nvim_set_keymap('n','.','searchcount().total > 0 ? "n" : ":lua vim.diagnostic.goto_next()<CR>"' ,{silent = true,noremap = true,expr = true})
 
 --lsp hover
-vim.api.nvim_set_keymap('n','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
-vim.api.nvim_set_keymap('v','`',':lua vim.lsp.buf.hover()<CR>',{silent = true})
+vim.api.nvim_set_keymap('n','z',':lua vim.lsp.buf.hover()<CR>',{silent = true})
+vim.api.nvim_set_keymap('v','z',':lua vim.lsp.buf.hover()<CR>',{silent = true})
 
 --fold
 vim.api.nvim_set_keymap('n','<Space>',[[ foldclosed(line(".")) < 0 && foldlevel(line(".")) > 0 ? 'zc' : 'zO' ]],{silent = true,noremap = true,expr = true})
@@ -478,17 +478,20 @@ cmp.setup.cmdline(':', {
 require("luasnip.loaders.from_vscode").lazy_load()
 
 --start lsp server
-require('lspconfig')['gopls'].setup {
-	cmd={'gopls'},
-	capabilities=require('cmp_nvim_lsp').default_capabilities(),
-	setting={
-	  gopls={
-		usePlaceholders=true,
-		diagnosticsTrigger="Save",
-	  },
+vim.lsp.enable('gopls')
+vim.lsp.config('gopls',{
+  capabilities=require('cmp_nvim_lsp').default_capabilities(),
+  settings={
+	['gopls']={
+	  usePlaceholders=true,
+	  diagnosticsTrigger="Save",
 	},
-}
-require('lspconfig')['clangd'].setup {
-	cmd={'clangd','--enable-config'},
+  },
+})
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd',{
 	capabilities=require('cmp_nvim_lsp').default_capabilities(),
-}
+	settings={
+	  ['clangd']={},
+	}
+})
